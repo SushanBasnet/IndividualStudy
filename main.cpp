@@ -11,12 +11,21 @@
 #include <ctime>
 #include <fstream>
 #include <thread>
-
+#define DELAY_NS 0
 using namespace std;
+
 const char *path="/Users/sbasnet/nums.txt";
 
+//stimulate access latency for array (can be done with inheritance also)
+int get(vector<int>& array, int index){
+    this_thread::sleep_for(chrono::nanoseconds(DELAY_NS));
+    return array[index];
+}
 
-
+void set(vector<int>& array, int index, int value) {
+    this_thread::sleep_for(chrono::nanoseconds(DELAY_NS));
+    array[index] = value;
+}
 
 
 
@@ -31,14 +40,16 @@ void swap(int* a, int*b) {
  move smaller elements left to the pivot
  move bigger elements right to the pivot*/
 int partition(vector<int>& arr, int i, int k) {
-    int pivot = arr[k];
+    int pivot = get(arr, k);
     int pindex = i;
     for(int j=i; j < k; j++) {
-        if (arr[j] <= pivot) {
+        if (get(arr,j) <= pivot) {
+            this_thread::sleep_for(chrono::nanoseconds(2* DELAY_NS)); // access during swap
             swap(&arr[pindex], &arr[j]);
             pindex++;
         }
     }
+    this_thread::sleep_for(chrono::nanoseconds(2* DELAY_NS)); // access during swap
     swap(&arr[pindex], &arr[k]);
     return pindex;
 }
@@ -58,21 +69,20 @@ void merge(vector<int>& arr, int i, int j, int k) {
     vector<int> tmp;
     
     while(leftpos <= j && rightpos <=k) {
-        if (arr[leftpos] < arr[rightpos]) tmp.push_back(arr[leftpos++]);
-        else tmp.push_back(arr[rightpos++]);
-        comparisions++;
+        if (get(arr, leftpos) < get(arr,rightpos)) tmp.push_back(get(arr,leftpos++));
+        else tmp.push_back(get(arr,rightpos++));
     }
     
     while(leftpos <= j) {
-        tmp.push_back(arr[leftpos++]);
+        tmp.push_back(get(arr,leftpos++));
     }
     while(rightpos <= k) {
-        tmp.push_back(arr[rightpos++]);
+        tmp.push_back(get(arr,rightpos++));
     }
     
     //now transfer to the initial array O(n)
     for(int k=0; k<tmp.size(); k++) {
-        arr[i+k] = tmp[k];
+        set(arr,i+k,get(tmp,k));
     }
 }
 
@@ -106,7 +116,7 @@ void readFromFile(vector<int>& nums) {
 
 
 int main(int argc, const char * argv[]) {
-    generateTextFile(1000000);
+    generateTextFile(10000000);
     vector<int> nums;
     readFromFile(nums);
     double duration;
