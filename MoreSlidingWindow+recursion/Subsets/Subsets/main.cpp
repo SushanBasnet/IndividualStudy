@@ -13,7 +13,7 @@ using namespace std;
  output: vector<vector<int>>
  */
 
-void helper(vector<int> nums, vector<int> entry, vector<vector<int>>& ans, int i);
+void helper(const vector<int>& nums, vector<int>& entry, vector<vector<int>>& ans, int i);
 
 vector<vector<int>> subsets(vector<int> nums) {
     vector<vector<int>> ans;
@@ -22,7 +22,7 @@ vector<vector<int>> subsets(vector<int> nums) {
     return ans;
 }
 
-void helper(vector<int> nums, vector<int> entry, vector<vector<int>>& ans, int i) {
+void helper(const vector<int>& nums, vector<int>& entry, vector<vector<int>>& ans, int i) {
     //base case
     if (i >= nums.size()) {
         //push entry to ans;
@@ -33,6 +33,7 @@ void helper(vector<int> nums, vector<int> entry, vector<vector<int>>& ans, int i
     helper(nums, entry, ans, i+1);
     entry.push_back(nums[i]);
     helper(nums, entry, ans, i+1);
+    entry.pop_back();
 }
 
 
