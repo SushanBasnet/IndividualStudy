@@ -1,13 +1,11 @@
-//
-//  main.cpp
-//  WordSearchProject
-//
-//  Created by Sushan Basnet on 2/28/20.
-//  Copyright © 2020 Sushan Basnet. All rights reserved.
-//
+
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+
+#define PATH "/Users/sbasnet/Documents/C++/IndividualStudy/WPSolver"
+
 using namespace std;
 enum direction {NONE=-1, NW=0, N=1, NE=2, W=3, E=4, SW=5, S=6, SE=7};
 struct Ans {
@@ -16,10 +14,10 @@ struct Ans {
     direction d;
 };
 
-bool helper(vector<vector<char>>& grid, int i, int j, string& word, int pos, int d,  Ans& ans) {
+bool helper(vector<vector<char> >& grid, int i, int j, string& word, int pos, int d,  Ans& ans) {
     //base case Out-Of-Bounds Check
     
-    if (i < 0 || i >= grid.size() || j < 0 || j >= grid.size()) {
+    if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size()) {
         return false;
     }
     //non-matching character check
@@ -69,7 +67,7 @@ bool helper(vector<vector<char>>& grid, int i, int j, string& word, int pos, int
     
 }
 
-Ans search(vector<vector<char>>& grid, string word ) {
+Ans search(vector<vector<char> >& grid, string word ) {
     Ans ans;
     if (word.empty() || grid.empty()) return ans; //important because of word.size()-1
     for(int i=0; i<grid.size(); i++) {
@@ -85,25 +83,36 @@ Ans search(vector<vector<char>>& grid, string word ) {
     return ans;
 }
 
+vector<vector<char>> readFromFile(const char* fileName) {
+    
+    string fullPath = string(PATH) +"/"+ fileName;
+    ifstream in(fullPath );
+    
+    
+    vector<vector<char>> grid;
+    string inputStr;
+    if(in.is_open())
+    {
+        while(in >> inputStr) {
+            cout << inputStr << endl;
+            vector<char> entry;
+            for(auto c: inputStr) {
+                entry.push_back(c);
+            }
+            grid.push_back(entry);
+        }
+    }
+    return grid;
+    
+}
+
 int main(int argc, const char * argv[]) {
     
-    vector<vector<char>> grid
-        {{'A','G','L','O','W','O','G','L','E','S','T','C','E','L','S','I'},
-        {'M','H','O','P','R','N','I','U','A','T','E','D','J','W','P','A'},
-        {'G','O','I','M','I','E','Z','A','A','N','A','E','O','B','A','S'},
-        {'S','N','O','K','S','C','Z','W','S','W','S','T','Y','I','M','P'},
-        {'S','T','I','R','R','E','D','O','N','P','W','A','S','C','H','I'},
-        {'A','H','N','N','L','R','R','E','I','O','O','R','P','E','E','R'},
-        {'Z','F','R','E','E','S','D','H','K','I','S','T','O','P','R','E'},
-        {'I','L','A','S','M','K','S','S','A','F','A','R','I','I','N','G'},
-        {'P','S','A','D','I','R','C','A','B','K','C','M','B','D','I','M'},
-        {'P','L','G','N','I','F','E','I','R','B','L','L','B','E','A','E'},
-        {'E','C','I','A','R','G','O','F','U','G','E','U','U','R','E','L'},
-        {'R','M','W','Y','X','E','I','S','T','Q','S','P','C','M','A','T'},
-        {'E','Q','S','G','N','I','T','T','E','U','O','H','L','I','S','S'},
-        {'D','S','T','U','A','N','R','E','G','G','U','J','V','S','D','Y'}};
+    vector<vector<char>> grid = readFromFile(argv[1]);
     
-    Ans ans = search(grid, "FASSK");
+    cout << "FINDING WORD: "  << string(argv[2]) << endl;
+    
+    Ans ans = search(grid, argv[2]);
     cout << "Row = " << ans.row << endl;
     cout << "Col = " << ans.col << endl;
     cout << "Dir = " << ans.d << endl;
