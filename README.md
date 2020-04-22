@@ -1,14 +1,14 @@
 # IndividualStudy
 ## Individual study of Algorithms and Data Structures ##
 
-The overall purpose of the individual study is to explore more complex software programming concepts that is beyond the scope of ECE 309.  Some of the topics I intend to cover include sorting algorithms, data structures and programming techniques and algorithms. The study can also help identify more relevant topics that can be integrated to ECE 309, or other courses in the CPE curriculum.
+The overall purpose of the individual study is to explore more complex software programming concepts that is beyond the scope of ECE 309. Below is the list of topics that I have covered in the span of 4 months, which includes sorting algorithms, data structures and programming techniques and algorithms. This study can also help identify more relevant topics that can be integrated to ECE 309, or other courses in the CPE curriculum.
 
 ### Sorting Algorithms ###
 Nlog(N) Sorting Algorithms and their runtime complexity analysis (1-2 weeks)
 
-	* Implement Quicksort, Mergesort
+	* Implemente Quicksort and Mergesort 
 	
-	* Analyze runtime complexity 
+	* Analyze runtime complexity with and without simulated data access latencies 
 	
 	* Discuss tradeoffs and optimize for best/worst/average case performance
 	
@@ -20,9 +20,12 @@ Binary Tree Data Structure (1 week)
 
 	* Be Familiar with different traversals (Recursive and iterative)
 	
-	* Solve related problems: Validating Trees, Common ancestors
+	* Solved the following problems:
+		- Pre-order, Inorder and Post-order traversals (Iterative and Recursive approaches)
+		- Level order traversal
+		- Validating a Binary Search Tree
 	
-Graphs (2 weeks)
+Graphs + Linked List + Stack(2 weeks)
 
 	* Be Familiar with graph traversals (BFS, DFS)
 	
@@ -33,36 +36,53 @@ Graphs (2 weeks)
 	* Converting transitive equations to graphs
 	
 	* Deep copy of graphs
+		
+	* Completed Problems: 
+		- Clone a graph (Deep Copy)
+		- Town Judge problem 
+		- Copy Linked List with Random pointer
+		- Find Cycle
+		- Min Stack
 	
-	* Research about Application on computer networks
 
-Possible Project Idea:
+ Project 1 (1 week)
 
 	* Software Cache with O(1) insert and retrieval time
 
 ### Programming Techniques ###
 
-Sliding Window Technique (0.5 week)
+Sliding Window Technique (0.5 week) 
 
 	* Converting O(N^2) solutions to O(N)
 	
+	* Completed problems:
+		- Two Sum
+		- Palindrone
+		- Anagram
+		- Longest Non-repeating Character
+	
 Greedy Algorithms (0.5 week)
 
-	* Knapsack Type Problem (fractional)
+	* Finding Subsequence
 	
-Divide and Conquer (1 week)
+	* Lemonade Change Problem
+	
+	
+Recursion & Backtracking (2 weeks)
 
-	* Mergesort
+	* Generate Permutations and Combinations using recursion
 	
-	* Sorted 2D Matrix Search using Divide & Conquer
+	* 2D island problems
 	
-Recursion & Backtracking (1 week)
-
-	* Generate N combinations and permutations 
-	
-	* Largest island problems
-	
-	* N Queens problem
+	* Completed Problems:
+		- RangeSum 
+		- Permutation In String
+		- Generate all subsets (powerset)
+		- Combination Sum I & II
+		- Count Number of Islands on 2D plot
+		
+Project 2 (1 week)
+	* Word Search Project that uses Google Vision to solve word search puzzles given in image format
 	
 Dynamic Programming (2 weeks)
 
@@ -72,9 +92,20 @@ Dynamic Programming (2 weeks)
 	
 	* Knapsack type problems (non-fractional), Memoization tables
 	
-	* Report on the application of DP in the industry
+	* Completed Problems: 
+		- Generate Nth Fibonacci number
+		- Unique Paths problem (using both recursion, top-down and bottom-up approaches)
+		- Climbing Stairs (variation of Fibonacci)
+		- Longest Increasing Subsequence
+		- Min Cost Stair-climbing
+		- Unique Paths with Obstacles
+		- Minimum Paths Sum (recursion, top-down, bottom-up and optimized for space)
 	
-	Possible Project Ideas:
-		1. Solve 2D maze problems with backtracking
-		2. Word Search puzzle solver using computer vision libraries
+Genetics Algorithm (1 week)
+
+	* Learn about genetic algorithm concepts
+	
+	* Implement Natural Selection to achieve target
+	
+	* Learn to implement selection, crossover, mutation
 
